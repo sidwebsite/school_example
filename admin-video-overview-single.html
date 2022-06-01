@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEIS school</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- vue script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body class="vh-100">
+    <!-- phone navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavbar" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-between">
+            <h5 class="text-success"><i class="fas fa-user"></i> My name</h5>
+            <button type="button" class="btn text-white" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="list-unstyled mobileNavbarList">               
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-globe"></i> 語言
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseLanguage"> 
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileZh-TW" value="zh-TW" autocomplete="off" checked>
+                            <label for="mobileZh-TW">繁體中文</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileEn" value="en" autocomplete="off">
+                            <label for="mobileEn">English</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileJp" value="jp" autocomplete="off">
+                            <label for="mobileJp">日文</label>
+                        </li>
+                    </ul>                 
+                </li>
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseClass" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-book-open"></i> 設定管理
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseClass"> 
+                        <li><a href="admin-settings-management.html">課程總覽</a></li>
+                        <li><a href="admin-arrange-class.html">安排課程</a></li>
+                        <li><a href="admin-edit-topic.html">編輯題庫</a></li>
+                        <li><a href="admin-edit-test.html">編輯試卷</a></li>
+                        <li><a href="admin-test-administration.html">測驗管理</a></li>
+                    </ul>                    
+                </li>
+                <li class="mb-3">           
+                    <a data-bs-toggle="collapse" href="#collapseUserOption" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-user"></i> 用戶管理
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseUserOption">                        
+                        <li><a href="account-management.html">帳號管理</a></li>
+                        <li><a href="list-management.html">清單管理</a></li>
+                        <li><a href="history-record.html">歷程紀錄</a></li>
+                        <li><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="main bg-dark d-flex flex-column min-vh-100">
+        <!-- header -->
+        <header id="header" class="bg-success">
+            <nav class="navbar navbar-expand-xl navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="admin-dashboard.html">
+                        <img src="./image/logo.png" alt="HIES school">
+                    </a>
+                    <button id="navbar-btn" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavbar" aria-controls="offcanvasExample">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="#" type="button" class="nav-link cog-btn">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-globe"></i> 中文
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="language">
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="zh-TW" value="zh-TW" autocomplete="off" checked>
+                                        <label class="dropdown-item" for="zh-TW">中文</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="en" value="en" autocomplete="off">
+                                        <label class="dropdown-item" for="en">English</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="jp" value="jp" autocomplete="off">
+                                        <label class="dropdown-item" for="jp">日文</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userOption" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i> My name
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="userOption">
+                                    <li><a class="dropdown-item" href="account-management.html">帳號管理</a></li>
+                                    <li><a id="sign-out-btn" class="dropdown-item" href="javascript:;">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- container -->
+        <section class="flex-grow-1 d-flex h-100">
+            <!-- left navbar -->
+            <div class="navbar-left overflow-hidden">
+                <h3 class="pt-5 text-center mb-3">學習計畫</h3>
+                <ul class="list-unstyled text-center fs-5">
+                    <li><a href="admin-dashboard.html">即時概要</a></li>
+                    <li><a href="admin-arrange-class.html">安排課程</a></li>                    
+                    <li><a href="admin-edit-topic.html">編輯題庫</a></li>
+                    <li><a href="admin-edit-test.html">編輯試卷</a></li>
+                    <li><a href="admin-test-administration.html">測驗管理</a></li>
+                    <li><a href="admin-list-management.html">清單管理</a></li>
+                    <li class="active"><a href="admin-video-overview.html">影片總覽</a></li>
+                </ul>
+            </div>
+            <!-- content -->
+            <div id="content" class="w-100 content-right">
+                <!-- video -->
+                <section class="video-block">
+                    <div class="container-lg">
+                        <div class="video row justify-content-center">   
+                            <div class="col-lg-10">
+                                <video id="videojs-sprite-thumbnails-player" class="video-js vjs-default-skin vjs-big-play-centered vjs-16-9" poster="./image/banner1.png" data-setup='{"aspectRatio":"12:5"}' controls>
+                                    <source src="https://player.vimeo.com/external/567375499.sd.mp4?s=138de31a98d7e5a51234eb7732a8719af86d9efc&profile_id=165" type="video/mp4"></source>
+                                </video>
+                            </div>                    
+                        </div>
+                    </div>                
+                </section>
+                <!-- inner -->
+                <div class="container-fluid px-lg-3 px-xxl-5 px-0 py-5">
+                    <div class="row">
+                        <!--  -->
+                        <div class="col-md-9">
+                            <h3 class="mb-3">第 1 集 - 從零開始的資安冒險</h3>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="input-group rounded-pill overflow-hidden">
+                                                <input type="text" class="form-control" placeholder="請輸入標籤">
+                                                <button class="btn btn-primary add-tag-btn" type="button">新增</button>
+                                            </div>                                            
+                                        </div>
+                                        <div class="col-md-auto">
+                                            <button class="btn text-white fs-5 px-0" type="button" id="tag-edit"><i class="icon-school-edit"></i></button>
+                                        </div>
+                                    </div>                                    
+                                </div>
+                                <div class="col-md-7">
+                                    <ul class="list-inline">
+                                        <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">開發管理</li>
+                                        <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">進階</li>
+                                        <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">Meteo Fall</li>
+                                        <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">中文</li>
+                                        <li class="list-inline-item bg-cyan text-dark rounded-pill px-3 py-2 text-xs">新手教學</li>
+                                        <li class="list-inline-item bg-cyan text-dark rounded-pill px-3 py-2 text-xs">通識課程</li>
+                                    </ul>
+                                </div>
+                            </div>                                                    
+                        </div>
+                        <!--  -->
+                        <div class="col-md-3 text-end fs-5">
+                            <a href="admin-video-overview.html">返回 <i class="fas fa-reply"></i></a>
+                        </div>                        
+                    </div>
+                    <!--  -->
+                    <div class="row my-3">
+                        <div class="col-12">
+                            <div class="custom-dashed"></div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="row">
+                        <!--  -->
+                        <div class="col-md-7">
+                            <h3>經典駭客攻擊教程：給每個人的網站安全入門</h3>
+                            <ul class="list-inline my-3">
+                                <li class="list-inline-item text-warning me-3 d-none d-md-inline-block">2021/06/24上架</li>
+                                <li class="list-inline-item"><i class="fas fa-chalkboard-teacher text-cyan"></i> 艾瑪·史爾克</li>
+                                <li class="list-inline-item"><i class="icon-school-video text-cyan"></i> 4 Video</li>
+                            </ul>  
+                            <p class="mb-4">江湖聞之色變、人稱「不死之龍」的黑道傳奇人物，某日竟突然銷聲匿跡、退隱江湖，甚至搖身一變成了家庭主夫！？原來龍在認識了妻子美久後，便決定金盆洗手作羹湯，改行成為家庭主夫！為了貫徹他的「主夫之道」，他甘願作女強人妻子背後的小男人，悉心打理一切家務，並開始與一眾主婦周旋，守護社區的和平…</p>
+                            <div class="row g-3">
+                                <label for="colFormLabelSm" class="col-md-auto col-form-label col-form-label-sm d-flex align-items-center">設定標籤</label>
+                                <div class="col-md-7">
+                                    <div class="input-group rounded-pill overflow-hidden">
+                                        <input type="text" class="form-control" placeholder="請輸入標籤">
+                                        <button class="btn btn-primary add-tag-btn" type="button">新增</button>
+                                    </div>
+                                </div>                                
+                                <div class="col-md-auto">
+                                    <button class="btn text-white fs-5" type="button" id="tag-edit"><i class="icon-school-edit"></i></button>
+                                </div>
+                            </div>                            
+                            <ul class="list-inline my-3">
+                                <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">開發管理</li>
+                                <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">進階</li>
+                                <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">Meteo Fall</li>
+                                <li class="list-inline-item bg-primary rounded-pill px-3 py-2 text-xs">中文</li>
+                            </ul>
+                        </div>
+                        <!--  -->
+                        <div class="col-md-5">
+                            <div class="ps-3 border-start">
+                                <h3 class="mb-3">集數</h3>
+                                <!--  -->
+                                <a href="#">
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <div class="img-container-link">
+                                                <img class="lozad" data-src="./image/new-class2.png" alt="..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 last_watched">
+                                            <h5>第 1 集</h5>
+                                            <h5>從零開始的資安冒險</h5>
+                                            <p class="text-gray">8 分 16 秒</p>                                        
+                                        </div>
+                                    </div>
+                                </a>
+                                <!--  -->
+                                <a href="#">
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <div class="img-container-link">
+                                                <img class="lozad" data-src="./image/new-class2.png" alt="..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 last_watched">
+                                            <h5>第 2 集</h5>
+                                            <h5>從零開始的資安冒險</h5>
+                                            <p class="text-gray">8 分 16 秒</p>                                        
+                                        </div>
+                                    </div>
+                                </a>
+                                <!--  -->
+                                <a href="#">
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <div class="img-container-link">
+                                                <img class="lozad" data-src="./image/new-class2.png" alt="..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 last_watched">
+                                            <h5>第 3 集</h5>
+                                            <h5>從零開始的資安冒險</h5>
+                                            <p class="text-gray">8 分 16 秒</p>                                        
+                                        </div>
+                                    </div>
+                                </a>
+                                <!--  -->
+                                <a href="#">
+                                    <div class="row mb-3">
+                                        <div class="col-lg-6">
+                                            <div class="img-container-link">
+                                                <img class="lozad" data-src="./image/new-class2.png" alt="..." >
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 last_watched">
+                                            <h5>第 4 集</h5>
+                                            <h5>從零開始的資安冒險</h5>
+                                            <p class="text-gray">8 分 16 秒</p>                                        
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>                        
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- footer -->
+        <footer class="bg-success">
+            <div class="container-xl py-3">
+                <div class="row">
+                    <div class="col">
+                        <img src="./image/Footer-company.png" alt="" srcset="">
+                        <p class="mt-2 mb-0">© <span class="year"></span> SYSTEX 精誠資訊. All rights reserved.</p>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <a href="javascript:;" id="contact-us-btn" class="link-info border-end border-info pe-3 text-decoration-none">聯絡我們</a>
+                        <a href="javascript:;" class="link-info ps-2 text-decoration-none">著作權及隱私權聲明</a>
+                    </div>
+                </div>
+            </div>            
+        </footer>
+        <!-- go to top -->
+        <button id="go-top-btn" class="btn btn-primary"><i class="fas fa-angle-double-up"></i></button>
+    </div>
+    <!-- sign out -->
+    <div class="modal fade" id="signOut" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">訊息</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <i class="fas fa-exclamation-triangle"></i> 你是否要登出!
+                </div>
+                <div class="modal-footer bg-dark border-top-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">否</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='login.html';">是</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact us -->
+    <div class="modal fade" id="contactUs" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">聯絡我們</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <p>您好，<span class="text-cyan">Aerf2021@gmail.com</span></p>
+                    <p>請在下方輸入意見或問題，我們將告知專人處理，謝謝。</p>
+                    <form>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer bg-dark border-top-0 justify-content-start">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">寄出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script src="./js/theme.js"></script>
+    <script src="./js/videoScript.js"></script>
+</SCRipt>
+</body>
+</html>

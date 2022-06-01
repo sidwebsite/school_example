@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <!-- stare google plus -->
+    <meta itemprop="name" content="">
+    <meta itemprop="image" content="">
+    <meta itemprop="description" content="">
+    <!-- stare facebook -->
+    <meta property="og:title" content="" >
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="" >    
+    <title>HEIS school</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- vue script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body class="vh-100">
+    <!-- phone navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavbar" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-end">
+            <button type="button" class="btn text-white" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="list-unstyled mobileNavbarList">   
+                <li>
+                    <form action="#" class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn mobilSearch"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </li>             
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-globe"></i> 語言
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseLanguage"> 
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileZh-TW" value="zh-TW" autocomplete="off" checked>
+                            <label for="mobileZh-TW">繁體中文</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileEn" value="en" autocomplete="off">
+                            <label for="mobileEn">English</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileJp" value="jp" autocomplete="off">
+                            <label for="mobileJp">日文</label>
+                        </li>
+                    </ul>                 
+                </li>
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseClass" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-book-open"></i> 學習計畫
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseClass"> 
+                        <li><a href="user-class-list.html">我的課程</a></li>
+                        <li><a href="javascript:;">安排課程</a></li>
+                        <li><a href="javascript:;">我的考試</a></li>
+                        <li><a href="javascript:;">編輯題庫</a></li>
+                        <li><a href="javascript:;">編輯試卷</a></li>
+                        <li><a href="javascript:;">安排考試</a></li>
+                    </ul>                    
+                </li>
+                <li class="mb-3">           
+                    <a data-bs-toggle="collapse" href="#collapseUserOption" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-user"></i> 用戶管理
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseUserOption"> 
+                        <li>My name</li>
+                        <li><a href="account-management.html">帳號管理</a></li>
+                        <li><a href="list-management.html">清單管理</a></li>
+                        <li><a href="history-record.html">歷程紀錄</a></li>
+                        <li><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="main bg-dark d-flex flex-column min-vh-100">
+        <!-- header -->
+        <header id="header" class="bg-success">
+            <nav class="navbar navbar-expand-xl navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="admin-dashboard.html">
+                        <img src="./image/logo.png" alt="HIES school">
+                    </a>
+                    <button id="navbar-btn" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavbar" aria-controls="offcanvasExample">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="#" type="button" class="nav-link cog-btn">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-globe"></i> 中文
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="language">
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="zh-TW" value="zh-TW" autocomplete="off" checked>
+                                        <label class="dropdown-item" for="zh-TW">中文</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="en" value="en" autocomplete="off">
+                                        <label class="dropdown-item" for="en">English</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="jp" value="jp" autocomplete="off">
+                                        <label class="dropdown-item" for="jp">日文</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userOption" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i> My name
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="userOption">
+                                    <li><a class="dropdown-item" href="account-management.html">帳號管理</a></li>
+                                    <li><a id="sign-out-btn" class="dropdown-item" href="javascript:;">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- content -->
+        <section id="content" class="flex-grow-1 d-flex h-100">
+            <div class="navbar-left overflow-hidden">
+                <h3 class="pt-5 text-center mb-3">學習計畫</h3>
+                <ul class="list-unstyled text-center fs-5">
+                    <li><a href="admin-dashboard.html">即時概要</a></li>
+                    <li><a href="admin-arrange-class.html">安排課程</a></li>                    
+                    <li class="active"><a href="admin-edit-topic.html">編輯題庫</a></li>
+                    <li><a href="admin-edit-test.html">編輯試卷</a></li>
+                    <li><a href="admin-test-administration.html">測驗管理</a></li>
+                    <li><a href="admin-list-management.html">清單管理</a></li>
+                    <li><a href="admin-video-overview.html">影片總覽</a></li>
+                </ul>
+            </div>
+            <div class="px-lg-3 px-xxl-5 px-0 py-5 w-100 content-right">
+                <div class="container-fluid">
+                    <div class="row align-items-center mb-3">
+                        <div class="col-auto">                            
+                            <label for="search"><h3 class="mb-0">題庫</h3></label>
+                        </div>
+                        <div class="col-md-6 col">
+                            <div class="input-group rounded-pill overflow-hidden">
+                                <input id="search" type="text" class="form-control" placeholder="請輸入關鍵字">
+                                <button class="btn bg-white text-secondary" type="button" id="tag-search"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                        <div class="col-md mt-md-0 mt-3">
+                            <div class="row">
+                                <div class="col text-gray d-flex align-items-center">
+                                    — 總共有112題
+                                </div>                        
+                                <div class="col d-flex justify-content-end">
+                                    <button type="button" class="btn btn-primary" onclick="location.href='admin-add-topic.html'">新增</button>
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                    <!--  -->
+                    <div class="row">
+                        <div class="col-12">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="class" aria-selected="true">全部</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="template-tab" data-bs-toggle="tab" data-bs-target="#template" type="button" role="tab" aria-controls="heis" aria-selected="false">範本</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="selection-tab" data-bs-toggle="tab" data-bs-target="#selection" type="button" role="tab" aria-controls="selection" aria-selected="false">選擇題</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="true-false-tab" data-bs-toggle="tab" data-bs-target="#true-false" type="button" role="tab" aria-controls="true-false" aria-selected="false">是非題</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content mt-3" id="myTabContent">
+                                <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                    <!-- topic1 -->
+                                    <div class="row topic topic-inner">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">
+                                                <article class="mb-3">例如磷的兩種同素異形體，紅磷和白磷，它們的燃點分別是攝氏240 °C（464 °F）和40 °C（104 °F），充分燃燒之後的產物都是五氧化二磷；白磷（P4）有劇毒，可溶於二硫化碳，紅磷（Pn）無毒，卻不溶於二硫化碳。同素異形體之間在一定條件下可以相互轉化，這種轉化是一種化學還原反應</article>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-warning"><i class="icon-school-template"></i> template</li>
+                                                    <li class="list-inline-item text-gray">化學</li>
+                                                    <li class="list-inline-item text-gray">還原反應</li>
+                                                    <li class="list-inline-item text-gray">同素異形體</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mt-lg-0 mt-3">
+                                                <ol class="flex-grow-1 ps-3">
+                                                    <li class="text-warning mb-2">由於其並非所有面全等因此不能算是正多面體</li>
+                                                    <li class="mb-2">由於其包含了正五邊形和六邊形面，因此也是一種戈德堡多面體了足球的代表性形狀</li>
+                                                    <li class="mb-2">阿爾布雷希特·丟勒也重現了一個類似截角二十面體的多面體，包含12個五角形和20個六角形面</li>
+                                                    <li class="mb-2">在戈德堡符號中可用GPV(1,1) 或 {5+,3}1,1表示</li>
+                                                </ol>
+                                                <div><button type="button" class="btn text-white topic-edit-btn"><i class="icon-school-edit"></i></button></div>
+                                            </div>                                            
+                                        </div>
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>   
+                                    </div>    
+                                    <!-- topic1 edit --> 
+                                    <div class="row topic topic-edit-inner d-none">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">                                                
+                                                <textarea class="textarea form-control mb-3">例如磷的兩種同素異形體，紅磷和白磷，它們的燃點分別是攝氏240 °C（464 °F）和40 °C（104 °F），充分燃燒之後的產物都是五氧化二磷；白磷（P4）有劇毒，可溶於二硫化碳，紅磷（Pn）無毒，卻不溶於二硫化碳。同素異形體之間在一定條件下可以相互轉化，這種轉化是一種化學還原反應</textarea>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-warning"><i class="icon-school-template"></i> template</li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 化學</button>
+                                                    </li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 還原反應</button>
+                                                    </li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 同素異形體</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="input-group mb-3 w-50 rounded-pill overflow-hidden">
+                                                    <input type="text" class="form-control" placeholder="請輸入標籤">
+                                                    <button class="btn btn-primary add-tag-btn" type="button">新增</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mb-3 mt-lg-0 mt-3">
+                                                <div class="flex-grow-1 topic-edit-radio">
+                                                    <input type="radio" class="btn-check" name="options-outlined" id="selection-radio-1" autocomplete="off" checked data-id="topic-selection-1">
+                                                    <label class="btn btn-outline-warning rounded-pill me-3" for="selection-radio-1">選擇題</label>                                                    
+                                                    <input type="radio" class="btn-check" name="options-outlined" id="true-false-radio-1" autocomplete="off" data-id="topic-true-false-1">
+                                                    <label class="btn btn-outline-warning rounded-pill" for="true-false-radio-1">是非題</label>
+                                                </div>
+                                                <button type="button" class="btn btn-primary topic-edit-save-btn">儲存</button>
+                                            </div>
+                                            <!-- 選擇題 -->
+                                            <div class="row" id="topic-selection-1">
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">1.</label>
+                                                        <input type="text" class="form-control" value="由於其並非所有面全等因此不能算是正多面體">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-1" id="topic-selection-1-1" checked>
+                                                            <label for="topic-selection-1-1"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">2.</label>
+                                                        <input type="text" class="form-control" value="由於其包含了正五邊形和六邊形面，因此也是一種戈德堡多面體了足球的代表性形狀">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-1" id="topic-selection-1-2">
+                                                            <label for="topic-selection-1-2"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">3.</label>
+                                                        <input type="text" class="form-control" value="阿爾布雷希特·丟勒也重現了一個類似截角二十面體的多面體，包含12個五角形和20個六角形面">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-1" id="topic-selection-1-3">
+                                                            <label for="topic-selection-1-3"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">4.</label>
+                                                        <input type="text" class="form-control" value="在戈德堡符號中可用GPV(1,1) 或 {5+,3}1,1表示">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-1" id="topic-selection-1-4">
+                                                            <label for="topic-selection-1-4"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 是非題 -->
+                                            <div class="row d-none" id="topic-true-false-1">
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value="是">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-true-false-1" id="topic-true-false-1-1" checked>
+                                                            <label for="topic-true-false-1-1"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value="否">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-true-false-1" id="topic-true-false-1-2">
+                                                            <label for="topic-true-false-1-2"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- edit end -->
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>                                        
+                                    </div>
+                                    <!-- topic2 -->
+                                    <div class="row topic topic-inner">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">
+                                                <article class="mb-3">在其老師米高·馬史特靈的支援下，克卜勒獲准在圖賓根大學理事會發表他的手稿，期間他刪掉了《聖經》注釋，增加了對哥白尼學說及他的新想法更簡單易懂的描述。《宇宙的神秘》於1596年年底發表，克卜勒於1597年年初收到了發表的版本，並將其傳送給著名的天文學家與贊助人。該書並未被廣泛閱讀，但是它建立了克卜勒作為一名高水平的天文學家的聲譽。對贊助人及格拉茲管理他職位的人充滿熱情的付出 ，也是他進入贊助體系的關鍵之路。</article>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-gray">化學</li>
+                                                    <li class="list-inline-item text-gray">還原反應</li>
+                                                    <li class="list-inline-item text-gray">同素異形體</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mt-lg-0 mt-3">
+                                                <ul class="list-inline flex-grow-1 test-options topic-checked-warning">
+                                                    <li class="list-inline-item me-5">
+                                                        <input type="radio" id="" name="test1" checked>
+                                                        <label for="">是</label>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <input type="radio" id="" name="test1">
+                                                        <label for="">否</label>
+                                                    </li>
+                                                </ul>
+                                                <div><button type="button" class="btn text-white topic-edit-btn"><i class="icon-school-edit"></i></button></div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>                                        
+                                    </div>
+                                    <!-- topic2 edit --> 
+                                    <div class="row topic topic-edit-inner d-none">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">                                                
+                                                <textarea class="textarea form-control mb-3">例如磷的兩種同素異形體，紅磷和白磷，它們的燃點分別是攝氏240 °C（464 °F）和40 °C（104 °F），充分燃燒之後的產物都是五氧化二磷；白磷（P4）有劇毒，可溶於二硫化碳，紅磷（Pn）無毒，卻不溶於二硫化碳。同素異形體之間在一定條件下可以相互轉化，這種轉化是一種化學還原反應</textarea>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-warning"><i class="icon-school-template"></i> template</li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 化學</button>
+                                                    </li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 還原反應</button>
+                                                    </li>
+                                                    <li class="list-inline-item text-gray">
+                                                        <button type="button" class="btn text-gray p-0"><i class="fas fa-trash-alt"></i> 同素異形體</button>
+                                                    </li>
+                                                </ul>
+                                                <div class="input-group mb-3 w-50 rounded-pill overflow-hidden">
+                                                    <input type="text" class="form-control" placeholder="請輸入標籤">
+                                                    <button class="btn btn-primary add-tag-btn" type="button">新增</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mb-3 mt-lg-0 mt-3">
+                                                <div class="flex-grow-1 topic-edit-radio">
+                                                    <input type="radio" class="btn-check" name="options-outlined-2" id="selection-radio-2" autocomplete="off" checked data-id="topic-selection-2">
+                                                    <label class="btn btn-outline-warning rounded-pill me-3" for="selection-radio-2">選擇題</label>                                                    
+                                                    <input type="radio" class="btn-check" name="options-outlined-2" id="true-false-radio-2" autocomplete="off" data-id="topic-true-false-2">
+                                                    <label class="btn btn-outline-warning rounded-pill" for="true-false-radio-2">是非題</label>
+                                                </div>
+                                                <button type="button" class="btn btn-primary topic-edit-save-btn">儲存</button>
+                                            </div>
+                                            <!-- 選擇題 -->
+                                            <div class="row" id="topic-selection-2">
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">1.</label>
+                                                        <input type="text" class="form-control" value="由於其並非所有面全等因此不能算是正多面體">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-2" id="topic-selection-2-1" checked>
+                                                            <label for="topic-selection-2-1"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">2.</label>
+                                                        <input type="text" class="form-control" value="由於其包含了正五邊形和六邊形面，因此也是一種戈德堡多面體了足球的代表性形狀">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-2" id="topic-selection-2-2">
+                                                            <label for="topic-selection-2-2"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">3.</label>
+                                                        <input type="text" class="form-control" value="阿爾布雷希特·丟勒也重現了一個類似截角二十面體的多面體，包含12個五角形和20個六角形面">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-2" id="topic-selection-2-3">
+                                                            <label for="topic-selection-2-3"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <label class="me-2 d-flex align-items-center" for="">4.</label>
+                                                        <input type="text" class="form-control" value="在戈德堡符號中可用GPV(1,1) 或 {5+,3}1,1表示">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-selection-2" id="topic-selection-2-4">
+                                                            <label for="topic-selection-2-4"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- 是非題 -->
+                                            <div class="row d-none" id="topic-true-false-2">
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value="是">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-true-false-2" id="topic-true-false-2-1" checked>
+                                                            <label for="topic-true-false-1-1"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 mb-3">                                                    
+                                                    <div class="input-group">
+                                                        <input type="text" class="form-control" value="否">
+                                                        <div class="topic-radio-style">
+                                                            <input type="radio" class="d-none" name="topic-true-false-2" id="topic-true-false-2-2">
+                                                            <label for="topic-true-false-1-2"></label>
+                                                        </div>                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- edit end -->
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>                                        
+                                    </div>
+                                    <!-- topic3 -->
+                                    <div class="row topic">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">
+                                                <article class="mb-3">英語：honeypot是一個電腦術語，專指用來偵測或抵禦未經授權操作或者是駭客攻擊的陷阱，因原理類似誘捕昆蟲的蜜罐因而得名</article>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-warning"><i class="icon-school-template"></i> template</li>
+                                                    <li class="list-inline-item text-gray">資安知識</li>
+                                                    <li class="list-inline-item text-gray">駭客應對</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mt-lg-0 mt-3">
+                                                <ol class="flex-grow-1 ps-3">
+                                                    <li class="mb-2">蜜罐通常偽裝成看似有利用價值的網路、資料、電腦系統，並故意設定了bug，用來吸引駭客攻擊</li>
+                                                    <li class="text-warning mb-2">由於蜜罐事實上並未對網路提供任何有價值的服務，所以任何對蜜罐的嘗試都是可疑的</li>
+                                                    <li class="mb-2">蜜罐中還可能裝有監控軟體，用以監視駭客入侵後的舉動</li>
+                                                    <li class="mb-2">蜜罐在拖延駭客攻擊真正目標上也有一定作用。不過駭客可能發現一個電腦系統是蜜罐，進而提前退出</li>
+                                                </ol>
+                                                <div><button type="button" class="btn text-white"><i class="icon-school-edit"></i></button></div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>                                        
+                                    </div>
+                                    <!-- topic2 -->
+                                    <div class="row topic">
+                                        <div class="col-lg-6 topic-right-line">
+                                            <div class="topic-content">
+                                                <article class="mb-3">巨集病毒的另一個特別危險的特徵體現於它們有時能夠感染執行不同作業系統平台上的的電腦。比如Microsoft Word巨集病毒可以感染使用微軟公司視窗系統的Word使用者，同樣也可以感染使用蘋果公司Macintosh電腦的使用者。</article>
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item text-gray">教學</li>
+                                                    <li class="list-inline-item text-gray">資安知識</li>
+                                                    <li class="list-inline-item text-gray">電腦病毒</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="d-flex mt-lg-0 mt-3">
+                                                <ul class="list-inline flex-grow-1 test-options topic-checked-warning">
+                                                    <li class="list-inline-item me-5">
+                                                        <input type="radio" id="" name="test2">
+                                                        <label for="">是</label>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <input type="radio" id="" name="test2" checked>
+                                                        <label for="">否</label>
+                                                    </li>
+                                                </ul>
+                                                <div><button type="button" class="btn text-white"><i class="icon-school-edit"></i></button></div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="col-12 my-3">
+                                            <div class="border-bottom border-primary"></div>
+                                        </div>                                        
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="template" role="tabpanel" aria-labelledby="recommend-tab">
+                                    2
+                                </div>
+                                <div class="tab-pane fade" id="selection" role="tabpanel" aria-labelledby="heis-tab">
+                                    3
+                                </div>
+                                <div class="tab-pane fade" id="true-false" role="tabpanel" aria-labelledby="other-tab">
+                                    4
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- footer -->
+        <footer class="bg-success">
+            <div class="container-xl py-3">
+                <div class="row">
+                    <div class="col">
+                        <img src="./image/Footer-company.png" alt="" srcset="">
+                        <p class="mt-2 mb-0">© <span class="year"></span> SYSTEX 精誠資訊. All rights reserved.</p>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <a href="javascript:;" id="contact-us-btn" class="link-info border-end border-info pe-3 text-decoration-none">聯絡我們</a>
+                        <a href="javascript:;" class="link-info ps-2 text-decoration-none">著作權及隱私權聲明</a>
+                    </div>
+                </div>
+            </div>            
+        </footer>
+        <!-- go to top -->
+        <button id="go-top-btn" class="btn btn-primary"><i class="fas fa-angle-double-up"></i></button>
+    </div>    
+    <!-- sign out -->
+    <div class="modal fade" id="signOut" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">訊息</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <i class="fas fa-exclamation-triangle"></i> 你是否要登出!
+                </div>
+                <div class="modal-footer bg-dark border-top-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">否</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='login.html';">是</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact us -->
+    <div class="modal fade" id="contactUs" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">聯絡我們</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <p>您好，<span class="text-cyan">Aerf2021@gmail.com</span></p>
+                    <p>請在下方輸入意見或問題，我們將告知專人處理，謝謝。</p>
+                    <form>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer bg-dark border-top-0 justify-content-start">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">寄出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script src="./js/theme.js"></script>
+    <script src="./js/topic.js"></script>
+</SCRipt>
+</body>
+</html>

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <!-- stare google plus -->
+    <meta itemprop="name" content="">
+    <meta itemprop="image" content="">
+    <meta itemprop="description" content="">
+    <!-- stare facebook -->
+    <meta property="og:title" content="" >
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="" >    
+    <title>HEIS school</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- vue script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body class="vh-100">
+    <!-- phone navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavbar" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-end">
+            <button type="button" class="btn text-white" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="list-unstyled mobileNavbarList">   
+                <li>
+                    <form action="#" class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn mobilSearch"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </li>             
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-globe"></i> 語言
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseLanguage"> 
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileZh-TW" value="zh-TW" autocomplete="off" checked>
+                            <label for="mobileZh-TW">繁體中文</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileEn" value="en" autocomplete="off">
+                            <label for="mobileEn">English</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileJp" value="jp" autocomplete="off">
+                            <label for="mobileJp">日文</label>
+                        </li>
+                    </ul>                 
+                </li>
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseClass" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-book-open"></i> 學習計畫
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseClass"> 
+                        <li><a href="user-class-list.html">我的課程</a></li>
+                        <li><a href="javascript:;">安排課程</a></li>
+                        <li><a href="javascript:;">我的考試</a></li>
+                        <li><a href="javascript:;">編輯題庫</a></li>
+                        <li><a href="javascript:;">編輯試卷</a></li>
+                        <li><a href="javascript:;">安排考試</a></li>
+                    </ul>                    
+                </li>
+                <li class="mb-3">           
+                    <a data-bs-toggle="collapse" href="#collapseUserOption" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-user"></i> 用戶管理
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseUserOption"> 
+                        <li>My name</li>
+                        <li><a href="account-management.html">帳號管理</a></li>
+                        <li><a href="list-management.html">清單管理</a></li>
+                        <li><a href="history-record.html">歷程紀錄</a></li>
+                        <li><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="main bg-dark d-flex flex-column min-vh-100">
+        <!-- header -->
+        <header id="header" class="bg-success">
+            <nav class="navbar navbar-expand-xl navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="admin-dashboard.html">
+                        <img src="./image/logo.png" alt="HIES school">
+                    </a>
+                    <button id="navbar-btn" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavbar" aria-controls="offcanvasExample">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a href="#" type="button" class="nav-link cog-btn">
+                                    <i class="fas fa-cog"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-globe"></i> 中文
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="language">
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="zh-TW" value="zh-TW" autocomplete="off" checked>
+                                        <label class="dropdown-item" for="zh-TW">中文</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="en" value="en" autocomplete="off">
+                                        <label class="dropdown-item" for="en">English</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="jp" value="jp" autocomplete="off">
+                                        <label class="dropdown-item" for="jp">日文</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userOption" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i> My name
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="userOption">
+                                    <li><a class="dropdown-item" href="account-management.html">帳號管理</a></li>
+                                    <li><a id="sign-out-btn" class="dropdown-item" href="javascript:;">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- content -->
+        <section id="content" class="flex-grow-1 d-flex h-100">
+            <div class="navbar-left overflow-hidden">
+                <h3 class="pt-5 text-center mb-3">學習計畫</h3>
+                <ul class="list-unstyled text-center fs-5">
+                    <li><a href="admin-dashboard.html">即時概要</a></li>
+                    <li><a href="admin-arrange-class.html">安排課程</a></li>                    
+                    <li><a href="admin-edit-topic.html">編輯題庫</a></li>
+                    <li><a href="admin-edit-test.html">編輯試卷</a></li>
+                    <li><a href="admin-test-administration.html">測驗管理</a></li>
+                    <li><a href="admin-list-management.html">清單管理</a></li>
+                    <li class="active"><a href="admin-video-overview.html">影片總覽</a></li>
+                </ul>
+            </div>
+            <div class="px-lg-3 px-xxl-5 px-0 py-5 w-100 content-right">
+                <div class="container-fluid">
+                    <!-- 推薦課程 -->
+                    <div class="row mb-3">
+                        <div class="col-md-8">
+                            <h3>推薦課程</h3>        
+                        </div>
+                        <div class="col-md-4">
+                            <div class="input-group mb-3 rounded-pill overflow-hidden">
+                                <input type="text" class="form-control" placeholder="Search" aria-label="" aria-describedby="tag-search">
+                                <button class="btn bg-white text-secondary" type="button" id="tag-search"><i class="fas fa-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">                                    
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="admin-video-overview-all.html" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">產品數據分析</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 最新上線課程 -->
+                    <div class="row mt-3">
+                        <h3 class="d-inline-block me-3 mb-3">最新上線課程</h3>                    
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">產品數據分析</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-sm-6 mb-3">
+                            <a href="javascript:;" title="">
+                                <div class="mb-3 img-container-link">
+                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                </div>
+                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                <p class="text-gray">課程時間 245 分鐘</p>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- 課程 -->
+                    <div class="row mt-3">
+                        <div class="col-12 mb-3">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="hot-tab" data-bs-toggle="tab" data-bs-target="#hot" type="button" role="tab" aria-controls="hot" aria-selected="true">我的課程</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="heis-tab" data-bs-toggle="tab" data-bs-target="#heis" type="button" role="tab" aria-controls="heis" aria-selected="false">推薦</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="moc-tab" data-bs-toggle="tab" data-bs-target="#moc" type="button" role="tab" aria-controls="moc" aria-selected="false">HEIS</button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="other-tab" data-bs-toggle="tab" data-bs-target="#other" type="button" role="tab" aria-controls="other" aria-selected="false">其他</button>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <!-- 熱門排行 -->
+                                <div class="tab-pane fade show active" id="hot" role="tabpanel" aria-labelledby="hot-tab">
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">1</span>
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">2</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">3</span>
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">4</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">5</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">6</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">7</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <span class="ribon">8</span>
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- HEIS -->
+                                <div class="tab-pane fade" id="heis" role="tabpanel" aria-labelledby="heis-tab">
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- MOC -->
+                                <div class="tab-pane fade" id="moc" role="tabpanel" aria-labelledby="moc-tab">
+                                    <div class="row mt-3">
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 其他 -->
+                                <div class="tab-pane fade" id="other" role="tabpanel" aria-labelledby="other-tab">
+                                    <div class="row mb-5">
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">經典駭客攻擊教程：給每個</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class2.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">IT網路必修系列 - ISF</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class3.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">產品數據分析</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                        <div class="col-lg-3 col-sm-6 mb-3">
+                                            <a href="javascript:;" title="">
+                                                <div class="mb-3 img-container-link">
+                                                    <img class="lozad" data-src="./image/new-class1.png" alt="...">
+                                                </div>
+                                                <h4 class="text-truncate">成長駭客－Landing Page</h4>
+                                                <p class="text-gray">課程時間 245 分鐘</p>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                    </div>  
+                </div>
+            </div>            
+        </section>
+        <!-- footer -->
+        <footer class="bg-success">
+            <div class="container-xl py-3">
+                <div class="row">
+                    <div class="col">
+                        <img src="./image/Footer-company.png" alt="" srcset="">
+                        <p class="mt-2 mb-0">© <span class="year"></span> SYSTEX 精誠資訊. All rights reserved.</p>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <a href="javascript:;" id="contact-us-btn" class="link-info border-end border-info pe-3 text-decoration-none">聯絡我們</a>
+                        <a href="javascript:;" class="link-info ps-2 text-decoration-none">著作權及隱私權聲明</a>
+                    </div>
+                </div>
+            </div>            
+        </footer>
+        <!-- go to top -->
+        <button id="go-top-btn" class="btn btn-primary"><i class="fas fa-angle-double-up"></i></button>
+    </div>    
+
+    <!-- sign out -->
+    <div class="modal fade" id="signOut" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">訊息</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <i class="fas fa-exclamation-triangle"></i> 你是否要登出!
+                </div>
+                <div class="modal-footer bg-dark border-top-0">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">否</button>
+                    <button type="button" class="btn btn-primary" onclick="location.href='login.html';">是</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- contact us -->
+    <div class="modal fade" id="contactUs" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark border border-3 border-primary">
+                <div class="modal-header bg-primary border-bottom-0 py-2">
+                    <h5 class="modal-title" id="staticBackdropLabel">聯絡我們</h5>
+                    <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body bg-dark">
+                    <p>您好，<span class="text-cyan">Aerf2021@gmail.com</span></p>
+                    <p>請在下方輸入意見或問題，我們將告知專人處理，謝謝。</p>
+                    <form>
+                        <textarea class="form-control" rows="5"></textarea>
+                    </form>
+                </div>
+                <div class="modal-footer bg-dark border-top-0 justify-content-start">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" aria-label="Close">寄出</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- javascript -->
+    <script src="./js/theme.js"></script>
+</body>
+</html>

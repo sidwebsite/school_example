@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <!-- stare google plus -->
+    <meta itemprop="name" content="">
+    <meta itemprop="image" content="">
+    <meta itemprop="description" content="">
+    <!-- stare facebook -->
+    <meta property="og:title" content="" >
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="" >    
+    <title>HEIS school</title>
+    <!-- css -->
+    <link rel="stylesheet" href="./css/style.css">
+    <!-- vue script -->
+    <script src="https://unpkg.com/vue@next"></script>
+</head>
+<body class="vh-100">
+    <!-- phone navbar -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="mobileNavbar" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header d-flex justify-content-end">
+            <button type="button" class="btn text-white" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="offcanvas-body pt-0">
+            <ul class="list-unstyled mobileNavbarList">   
+                <li>
+                    <form action="#" class="row mb-3">
+                        <div class="col">
+                            <input type="text" class="form-control" placeholder="Search">
+                        </div>
+                        <div class="col-auto">
+                            <button type="button" class="btn mobilSearch"><i class="fas fa-search"></i></button>
+                        </div>
+                    </form>
+                </li>             
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseLanguage" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-globe"></i> 語言
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseLanguage"> 
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileZh-TW" value="zh-TW" autocomplete="off" checked>
+                            <label for="mobileZh-TW">繁體中文</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileEn" value="en" autocomplete="off">
+                            <label for="mobileEn">English</label>
+                        </li>
+                        <li>
+                            <input type="radio" class="btn-check" name="mobile-options-outlined" id="mobileJp" value="jp" autocomplete="off">
+                            <label for="mobileJp">日文</label>
+                        </li>
+                    </ul>                 
+                </li>
+                <li class="mb-3">
+                    <a data-bs-toggle="collapse" href="#collapseClass" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-book-open"></i> 學習計畫
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseClass"> 
+                        <li><a href="user-class-list.html">我的課程</a></li>
+                        <li><a href="javascript:;">安排課程</a></li>
+                        <li><a href="javascript:;">我的考試</a></li>
+                        <li><a href="javascript:;">編輯題庫</a></li>
+                        <li><a href="javascript:;">編輯試卷</a></li>
+                        <li><a href="javascript:;">安排考試</a></li>
+                    </ul>                    
+                </li>
+                <li class="mb-3">           
+                    <a data-bs-toggle="collapse" href="#collapseUserOption" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fas fa-user"></i> 用戶管理
+                    </a>
+                    <ul class="collapse list-unstyled border-start border-light ms-3" id="collapseUserOption"> 
+                        <li>My name</li>
+                        <li><a href="account-management.html">帳號管理</a></li>
+                        <li><a href="list-management.html">清單管理</a></li>
+                        <li><a href="history-record.html">歷程紀錄</a></li>
+                        <li><a href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登出</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!-- main -->
+    <div class="main bg-dark d-flex flex-column min-vh-100">
+        <!-- header -->
+        <header id="header" class="bg-success">
+            <nav class="navbar navbar-expand-xl navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="./image/logo.png" alt="HIES school">
+                    </a>
+                    <button id="navbar-btn" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileNavbar" aria-controls="offcanvasExample">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item d-flex">
+                                <form class="d-flex" id="search">
+                                    <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+                                    <button id="search-btn" class="btn text-white" type="button"><i class="fas fa-search"></i></button>
+                                </form>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="language" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-globe"></i>
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="language">
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="zh-TW" value="zh-TW" autocomplete="off" checked>
+                                        <label class="dropdown-item" for="zh-TW">繁體中文</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="en" value="en" autocomplete="off">
+                                        <label class="dropdown-item" for="en">English</label>
+                                    </li>
+                                    <li>
+                                        <input type="radio" class="btn-check" name="options-outlined" id="jp" value="jp" autocomplete="off">
+                                        <label class="dropdown-item" for="jp">日文</label>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="user-class-list.html">
+                                    <i class="fas fa-book-open"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="userOption" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-user me-2"></i> My name
+                                </a>
+                                <ul class="dropdown-menu caret-down" aria-labelledby="userOption">
+                                    <li><a class="dropdown-item" href="account-management.html">帳號管理</a></li>
+                                    <li><a class="dropdown-item" href="list-management.html">清單管理</a></li>
+                                    <li><a class="dropdown-item" href="history-record.html">歷程紀錄</a></li>
+                                    <li><a class="dropdown-item" href="javascript:;" data-bs-toggle="modal" data-bs-target="#staticBackdrop">登出</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- content -->
+        <section id="content" class="flex-grow-1 d-flex h-100">
+            <div class="navbar-laft d-none d-lg-block overflow-hidden">
+                <h3 class="pt-5 text-center mb-3">記錄類型</h3>
+                <ul class="list-unstyled text-center fs-5">
+                    <li><a href="history-record.html">觀看紀錄</a></li>
+                    <li class="active"><a href="operate.html">操作</a></li>
+                </ul>
+            </div>
+            <div class="px-lg-3 px-xxl-5 px-0 py-5 w-100 content-right">
+                <div class="container-fluid">
+                    <form class="mb-3 row form-group">
+                        <label for="pickupdate" class="col-auto col-form-label">搜尋日期</label>
+                        <div class="col col-lg-4">
+                            <input type="text" class="form-control rounded-pill c-datepicker-input" id="pickupdate">
+                        </div>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table operation_table">
+                            <thead class="ot_head">
+                                <tr>
+                                    <th scope="col">時間</th>
+                                    <th scope="col">IP 位置</th>
+                                    <th scope="col">操作行為</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-nowrap">2021/07/09 - PM 16:56</td>
+                                    <td class="text-nowrap">60.248.96.211</td>
+                                    <td class="text-nowrap">編輯考題-全球知名的英國標準-資訊安全管理系統BS7799</td>
+                                </tr>
+                                <tr>
+                                    <td>2021/07/09 - PM 15:48</td>
+                                    <td>60.248.96.211</td>
+                                    <td>安排課程-經典駭客攻擊教程：給每個人的網站安全入門</td>
+                                </tr>
+                                <tr>
+                                    <td>2021/07/09 - AM 11:27</td>
+                                    <td>60.248.96.211</td>
+                                    <td>編輯考卷</td>
+                                </tr>
+                                <tr>
+                                    <td>2021/07/09 - AM 10:33</td>
+                                    <td>60.248.96.211</td>
+                                    <td>安排考試-有點難又不太難的沙盒測驗試題</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>            
+        </section>
+        <!-- footer -->
+        <footer class="bg-success">
+            <div class="container-xl py-3">
+                <div class="row">
+                    <div class="col">
+                        <img src="./image/Footer-company.png" alt="" srcset="">
+                        <p class="mt-2 mb-0">© <span class="year"></span> SYSTEX 精誠資訊. All rights reserved.</p>
+                    </div>
+                    <div class="col-auto ml-auto">
+                        <a href="#" class="link-info border-end border-info pe-3 text-decoration-none">聯絡我們</a>
+                        <a href="#" class="link-info ps-2 text-decoration-none">著作權及隱私權聲明</a>
+                    </div>
+                </div>
+            </div>            
+        </footer>
+        <!-- go to top -->
+        <button id="go-top-btn" class="btn btn-primary"><i class="fas fa-angle-double-up"></i></button>
+    </div>    
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary border-bottom-0">
+                <h5 class="modal-title" id="staticBackdropLabel">訊息</h5>
+                <button type="button" class="btn text-white" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body bg-dark">
+                <i class="fas fa-exclamation-triangle"></i> 你是否要登出!
+            </div>
+            <div class="modal-footer bg-dark border-top-0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">否</button>
+                <button type="button" class="btn btn-primary" onclick="location.href='login.html';">是</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <!--  -->
+    <script src="./js/theme.js"></script>
+    <script src="./js/operate.js"></script>
+</SCRipt>
+</body>
+</html>
